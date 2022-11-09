@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class ModelV3 extends JPanel implements ActionListener {
+public class Model extends JPanel implements ActionListener {
 
 	private Dimension d;
 	private final Font smallFont = new Font("Arial", Font.BOLD, 16);
@@ -63,7 +63,7 @@ public class ModelV3 extends JPanel implements ActionListener {
 	public int lastScore;
 	public int lastLife;
 
-	public ModelV3() {
+	public Model() {
 
 		loadImages();
 		initVariables();
@@ -189,17 +189,17 @@ public class ModelV3 extends JPanel implements ActionListener {
 			lastScore = score;
 			lastLife = lives;
 			
-			String acnt = LoginPageV2.WelcomeText.tAccount.getText();			
-			int dbScore = DBv3.getHighestScoreFromDB(acnt);
+			String acnt = LoginPage.WelcomeText.tAccount.getText();			
+			int dbScore = DB.getHighestScoreFromDB(acnt);
 			
-			DBv3.updateScore(acnt, lastScore);
-			DBv3.updateHighestScore(acnt, lastScore, dbScore);
+			DB.updateScore(acnt, lastScore);
+			DB.updateHighestScore(acnt, lastScore, dbScore);
 			
-			int s = DBv3.getScoreFromDB(LoginPageV2.WelcomeText.getTAccount().getText());
-			LoginPageV2.WelcomeText.getDisScore().setText("Your privious score : " + s);
+			int s = DB.getScoreFromDB(LoginPage.WelcomeText.getTAccount().getText());
+			LoginPage.WelcomeText.getDisScore().setText("Your privious score : " + s);
 			
-			int hs = DBv3.getHighestScoreFromDB(LoginPageV2.WelcomeText.getTAccount().getText());
-			LoginPageV2.WelcomeText.getDisHScore().setText("Your highest score : " + hs);
+			int hs = DB.getHighestScoreFromDB(LoginPage.WelcomeText.getTAccount().getText());
+			LoginPage.WelcomeText.getDisHScore().setText("Your highest score : " + hs);
 		}
 
 		continueLevel();

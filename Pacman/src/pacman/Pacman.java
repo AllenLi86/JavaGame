@@ -15,11 +15,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class PacmanV4 extends JFrame {
+public class Pacman extends JFrame {
 	
-	static ModelV3 model = new ModelV3();
+	static Model model = new Model();
 
-	public PacmanV4() {
+	public Pacman() {
 		setLayout(new BorderLayout());
 		add(model, BorderLayout.CENTER);
 	}

@@ -15,11 +15,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class LoginPageV2 extends JFrame{
+public class LoginPage extends JFrame{
 	WelcomeText welcomeText = new WelcomeText();
-	PacmanV4 pac;
+	Pacman pac;
 	
-	LoginPageV2(){
+	LoginPage(){
 		super("Login Page");
 		
 		add(welcomeText);
@@ -27,8 +27,6 @@ public class LoginPageV2 extends JFrame{
 		setBounds(100, 100, 420, 480);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
-		
 		
 	}
 	
@@ -119,7 +117,7 @@ public class LoginPageV2 extends JFrame{
 				public void actionPerformed(ActionEvent e) {
 					
 					String account = cAccount.getText(), passwd = cPassword.getText();
-					int cResult = DBv3.createAccount(account, passwd);
+					int cResult = DB.createAccount(account, passwd);
 					if(cResult == 1) {
 						createSuccessText.setVisible(true);
 						createfailText.setVisible(false);
@@ -156,12 +154,12 @@ public class LoginPageV2 extends JFrame{
 			try(Connection conn = DriverManager.getConnection(
 					"jdbc:mysql://localhost:3306/pacmandb", prop);) {
 				
-				isCorrect = DBv3.login(account, passwd, conn);
+				isCorrect = DB.login(account, passwd, conn);
 				
 				if (isCorrect) {
 					// 帳號密碼 符合 的狀況
 					System.out.println("Welcome");
-					pac = new PacmanV4();
+					pac = new Pacman();
 					pac.setVisible(true);
 					pac.setTitle("PacmanV4");
 					pac.setBounds(600, 200, 466, 517);
@@ -173,10 +171,10 @@ public class LoginPageV2 extends JFrame{
 					displayScore.setVisible(true);
 					displayHighestScore.setVisible(true);
 					
-					int s = DBv3.getScoreFromDB(tAccount.getText());
+					int s = DB.getScoreFromDB(tAccount.getText());
 					displayScore.setText("Your privious score : " + s);
 					
-					int hs = DBv3.getHighestScoreFromDB(tAccount.getText());
+					int hs = DB.getHighestScoreFromDB(tAccount.getText());
 					displayHighestScore.setText("Your highest score : " + hs);
 					
 					add(displayScore);

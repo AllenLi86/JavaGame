@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Properties;
 
-public class DBv3 {
+public class DB {
 	static final String sqlCheckAccount = "SELECT * FROM accounts WHERE account = ?";
 	static final String sqlAppendAccount = "INSERT INTO accounts (account,password) VALUES (?,?)";
 	static PreparedStatement checkStatement, appendStatement;
